@@ -15,7 +15,7 @@ export class AppAuthHeaders extends AuthHeaders {
   templateUrl: "./customers.component.html",
   providers: [
     CustomersDataService,
-    CustomersAsyncServices
+    CustomersAsyncServices,
     { provide: AuthHeaders, useClass: AppAuthHeaders }
   ]
 })

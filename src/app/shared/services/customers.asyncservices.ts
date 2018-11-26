@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class CustomersAsyncServices extends BaseHttpService <Customer> {
+export class CustomersAsyncServices extends BaseHttpService<Customer> {
   constructor(private apiClient: HttpClient, private reqHeaders: AuthHeaders) {
     super(apiClient, reqHeaders);
     this.baseAPIUrl = 'http://localhost:64695/';
