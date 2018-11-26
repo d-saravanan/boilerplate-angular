@@ -1,0 +1,33 @@
+Welcome to our Awesome Application
+<h1>{{pageTitle}}</h1>
+
+<div class='container'>
+
+<table class='table'>
+  <thead>
+    <tr>
+      <th>
+        FirstName
+      </th>
+      <th>
+        LastName
+      </th>
+      <th>
+        EMail
+      </th>
+      <th>
+        SSN
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor='let customer of OCustomers |async'>
+      <td>{{customer.FirstName}}</td>
+      <td>{{customer.LastName}}</td>
+      <td>{{customer.Email}}</td>
+      <td>{{customer.SSN}}</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>

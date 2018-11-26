@@ -1,10 +1,21 @@
 import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
+import { CustomersComponent } from './customers/customers.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: 'customers', component: CustomersComponent },
+  { path: '', component: CustomersComponent }
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(routes)
+  ],
+  declarations: [
+    CustomersComponent
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
