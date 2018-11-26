@@ -14,21 +14,34 @@ export abstract class BaseHttpService<T> {
     private authHeaders: AuthHeaders
   ) {}
 
-  get<T>(): Observable<T[]> {
+  public get<T>(fullResponse: boolean?): Observable<T[]> {
+
+    this.getFullResponse<T>(fullResponse);
+
     return this.httpClient.get<T[]>(
       `${this.baseAPIUrl}\\${this.serviceAPISegment}`,
       this.requestOptions
     );
   }
 
-  getById<T>(id: number): Observable<T> {
+  private getFullResponse<T>(fullResponse: boolean) {
+    const reqOptions = this.requestOptions;
+    if (fullResponse) {
+      reqOptions['observe'] = 'response';
+    }
+  }
+
+  getById<T>(id: number, fullResponse: boolean?): Observable<T> {
+    this.getFullResponse<T>(fullResponse);
     return this.httpClient.get<T>(
       `${this.baseAPIUrl}\\${this.serviceAPISegment}\\${id}`,
       this.requestOptions
     );
   }
 
-  post<T>(data: T): Observable<any> {
+  post<T>(data: T, fullResponse: boolean?): Observable<any> {
+    this.getFullResponse<T>(fullResponse);
+
     return this.httpClient.post(
       `${this.baseAPIUrl}\\${this.serviceAPISegment}`,
       data,
@@ -36,7 +49,17 @@ export abstract class BaseHttpService<T> {
     );
   }
 
-  put<T>(data: T): Observable<any> {
+  put<T>(data: T, fullResponse: boolean?): Observable<any> {
+    this.getFullResponse<T>(fullResponse);
     return this.httpClient.put(`${this.baseAPIUrl}\\${this.serviceAPISegment}`, data, this.requestOptions);
+  }
+
+  delete<T>(id: number, fullResponse: boolean?): Observable<any> {
+    this.getFullResponse<T>(fullResponse);
+
+    return this.httpClient.delete(
+      `${this.baseAPIUrl}\\${this.serviceAPISegment}\\${id}`,
+      this.requestOptions
+    );
   }
 }

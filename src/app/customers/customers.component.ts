@@ -15,18 +15,18 @@ export class AppAuthHeaders extends AuthHeaders {
   templateUrl: "./customers.component.html",
   providers: [
     CustomersDataService,
-    { provide: AuthHeaders, useClass: AppAuthHeaders },
-    // CustomersAsyncServices
+    CustomersAsyncServices
+    { provide: AuthHeaders, useClass: AppAuthHeaders }
   ]
 })
 export class CustomersComponent implements OnInit {
   Customers: Customer[] = [];
   OCustomers: Observable<Customer[]>;
-  pageTitle = "Welcome to CM";
+  pageTitle = 'Welcome to CM';
 
   ngOnInit(): void {
-    this.OCustomers = this.dataSvc.get<Customer>();
-    this.dataSvc.get<Customer>().subscribe(arg => (this.Customers = arg));
+    this.OCustomers = this.dataSvc.getCustomers();
+    this.dataSvc.getCustomers().subscribe(arg => (this.Customers = arg));
   }
 
   constructor(private dataSvc: CustomersDataService) {}
