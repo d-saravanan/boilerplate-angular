@@ -10,7 +10,7 @@ interface IAuthHeaders {
 @Injectable({
   providedIn: 'root'
 })
-export abstract class AuthHeaders implements IAuthHeaders {
+export class AuthHeaders implements IAuthHeaders {
   ContentType: string;
   Authorization: string;
   constructor(contentType, authorization) {
