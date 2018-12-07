@@ -1,15 +1,18 @@
-// import { NgModule } from "@angular/core";
-// import { HttpClientModule } from "@angular/common/http";
-// import { BaseHttpService } from "./asyncServices/http/base.http.service";
+import { NgModule } from "@angular/core";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
+@NgModule({
+  imports: [
+    HttpClientModule
+  ],
+  providers: [
+    //httpInterceptorFactory
+    //AuthorizationService
+  ],
+  exports: [
 
-// @NgModule({
-//   imports: [
-//     HttpClientModule
-//   ],
-//   providers: [
-//     // BaseHttpService
-//   ]
-// })
+  ]
 
-// export class SharedModule {}
+})
+
+export class SharedModule { }

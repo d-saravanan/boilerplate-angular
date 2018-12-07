@@ -4,6 +4,9 @@ import { Customer } from "../shared/models/customers.models";
 import { AuthHeaders } from "../shared/asyncServices/http/auth.headers";
 import { Observable } from "rxjs";
 import { CustomersAsyncServices } from "../shared/services/customers.asyncservices";
+import { Store } from "@ngrx/store";
+import { AppAuthenticationState } from "../core/authentication/state/app.auth.state";
+import { AuthenticationStateSelector } from "../core/authentication/state/authentication.selector";
 @Injectable()
 export class AppAuthHeaders extends AuthHeaders {
   constructor() {
@@ -23,13 +26,16 @@ export class CustomersComponent implements OnInit {
   Customers: Customer[] = [];
   OCustomers: Observable<Customer[]>;
   pageTitle = 'Welcome to CM';
-
+  loggedInUserName = '';
   ngOnInit(): void {
+    this.store.select(AuthenticationStateSelector).subscribe(x => {
+      this.loggedInUserName = x.profile.name;
+    });
     this.OCustomers = this.dataSvc.getCustomers();
     this.dataSvc.getCustomers().subscribe(arg => (this.Customers = arg));
   }
 
-  constructor(private dataSvc: CustomersDataService) {}
+  constructor(private dataSvc: CustomersDataService, private store: Store<AppAuthenticationState>) {}
 }
 
 
