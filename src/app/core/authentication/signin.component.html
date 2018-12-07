@@ -1,0 +1,9 @@
+<p *ngIf='userName'>
+  {{userName}}
+</p>
+
+<div>
+  <button (click)='socialSignIn("google")' >Google+ SignIn</button>
+</div>
+
+<a [routerLink]="['customers']" title='go to customers list page'>Customers List</a>
